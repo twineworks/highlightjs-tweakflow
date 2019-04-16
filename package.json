@@ -1,0 +1,29 @@
+{
+  "name": "highlightjs-tweakflow",
+  "version": "1.0.0",
+  "description": "highlight.js syntax definition for the tweakflow language",
+  "main": "tweakflow.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/twineworks/highlightjs-tweakflow.git"
+  },
+  "keywords": [
+    "tweakflow",
+    "highlight.js",
+    "highlightjs",
+    "syntax"
+  ],
+  "author": "Slawomir Chodnicki <slawomir.chodnicki@twineworks.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twineworks/highlightjs-tweakflow/issues"
+  },
+  "homepage": "https://github.com/twineworks/highlightjs-tweakflow#readme",
+  "devDependencies": {
+    "highlight.js": "^9.15.6",
+    "jasmine": "^3.3.1"
+  }
+}
