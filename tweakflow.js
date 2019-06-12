@@ -85,7 +85,7 @@ function hljsDefineTweakflow(hljs) {
 
   const BOUNDARY_RE = "(^|\\b|[ ])";
 
-  const INT_RE = "(_*[0-9][0-9_]*)";
+  const INT_RE = "([0-9][0-9_]*)";
   const LONG_RE = `[+\\-]?${INT_RE}`;
   const HEX_RE = "0x[0-9a-fA-F]+";
   const DOUBLE_RE = `[+\\-]?((NaN)|(Infinity)|(${INT_RE}+(\\.${INT_RE}+)?([eE][-+]?${INT_RE}+)?)|\\.${INT_RE}+([eE][-+]?${INT_RE}+)?)`;
