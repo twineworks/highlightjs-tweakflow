@@ -65,6 +65,7 @@ function hljsDefineTweakflow(hljs) {
     "function",
     "string",
     "boolean",
+    "binary",
     "long",
     "dict",
     "list",
@@ -84,14 +85,20 @@ function hljsDefineTweakflow(hljs) {
 
   const BOUNDARY_RE = "(^|\\b|[ ])";
 
-  const LONG_RE = "[+\\-]?[0-9]+";
+  const INT_RE = "(_*[0-9][0-9_]*)";
+  const LONG_RE = `[+\\-]?${INT_RE}`;
   const HEX_RE = "0x[0-9a-fA-F]+";
-  const DOUBLE_RE = "[+\\-]?((NaN)|(Infinity)|([0-9]+(\\.[0-9]+)?([eE][-+]?[0-9]+)?)|\\.[0-9]+([eE][-+]?[0-9]+)?)";
+  const DOUBLE_RE = `[+\\-]?((NaN)|(Infinity)|(${INT_RE}+(\\.${INT_RE}+)?([eE][-+]?${INT_RE}+)?)|\\.${INT_RE}+([eE][-+]?${INT_RE}+)?)`;
   const NUMBER_RE = `${BOUNDARY_RE}((${HEX_RE})|(${DOUBLE_RE}|(${LONG_RE})))`;
+  const BINARY_RE = `${BOUNDARY_RE}0b(_|([0-9a-fA-F]{2}))*`;
 
   const ID_RE = "[a-zA-Z_][a-zA-Z0-9?_]*";
   const ID_ESCAPED_RE = "`.+?`";
   const IDENTIFIER_RE = `((${ID_RE})|(${ID_ESCAPED_RE}))`;
+
+  const KEYNAME_RE = "[-+/a-zA-Z_0-9?]+";
+  const KEYNAME_ESCAPED_RE = "`.+?`";
+  const KEY_RE = `:((${KEYNAME_RE})|(${KEYNAME_ESCAPED_RE}))`;
 
   const OPTIONAL_SIGN_RE = "([+\\-])?";
   const DATE_RE = "\\d+-\\d+-\\d+T";
@@ -127,6 +134,11 @@ function hljsDefineTweakflow(hljs) {
     begin: NUMBER_RE
   };
 
+  const BINARY_MODE = {
+    className: 'number',
+    begin: BINARY_RE
+  };
+
   const DATETIME_MODE = {
     className: 'number',
     begin: DATETIME_RE
@@ -146,7 +158,7 @@ function hljsDefineTweakflow(hljs) {
 
   const SYMBOL_MODE = {
     className: "symbol",
-    begin: ":" + IDENTIFIER_RE
+    begin: KEY_RE
   };
 
   const SINGLE_QUOTED_STRING_MODE = {
@@ -212,6 +224,7 @@ function hljsDefineTweakflow(hljs) {
         LIBRARY_MODE,
         DEF_MODE,
         DATETIME_MODE,
+        BINARY_MODE,
         NUMBER_MODE,
         SYMBOL_MODE,
         SINGLE_QUOTED_STRING_MODE,
