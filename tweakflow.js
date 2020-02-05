@@ -98,7 +98,7 @@ function hljsDefineTweakflow(hljs) {
   const ID_ESCAPED_RE = "`.+?`";
   const IDENTIFIER_RE = `((${ID_RE})|(${ID_ESCAPED_RE}))`;
 
-  const KEYNAME_RE = "[-+/a-zA-Z_0-9?]+";
+  const KEYNAME_RE = "([.]?[-+/a-zA-Z_0-9?]+)+";
   const KEYNAME_ESCAPED_RE = "`.+?`";
   const KEY_RE = `:((${KEYNAME_RE})|(${KEYNAME_ESCAPED_RE}))`;
 
